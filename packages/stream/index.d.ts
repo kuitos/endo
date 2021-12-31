@@ -23,6 +23,28 @@ export function makePipe<
   Stream<TWrite, TRead, TWriteReturn, TReadReturn>,
 ];
 
+export function pump<
+  TRead,
+  TWrite = unknown,
+  TReadReturn = unknown,
+  TWriteReturn = unknown,
+>(
+  writer: Stream<TWrite, TRead, TWriteReturn, TReadReturn>,
+  reader: Stream<TRead, TWrite, TReadReturn, TWriteReturn>,
+  primer?: TWrite,
+): Promise<void>;
+
+export function prime<
+  TRead,
+  TWrite = unknown,
+  TReturn = unknown,
+>(
+  writer: AsyncGenerator<TRead,  TReturn, TWrite>,
+  // Omitted from type definition because undefined is
+  // nearly always adequate:
+  // primer: TWrite,
+): Stream<TRead, TWrite, TReturn, TReturn>;
+
 export function mapReader<
   TReadIn,
   TReadOut,
