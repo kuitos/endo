@@ -40,10 +40,16 @@ export function prime<
   TReturn = unknown,
 >(
   writer: AsyncGenerator<TRead,  TReturn, TWrite>,
-  // Omitted from type definition because undefined is
-  // nearly always adequate:
-  // primer: TWrite,
+  primer: TWrite,
 ): Stream<TRead, TWrite, TReturn, TReturn>;
+
+// Overload:
+export function prime<
+  TRead,
+>(
+  writer: AsyncGenerator<TRead, undefined, undefined>,
+  // primer is implicitly undefined for this overload.
+): Stream<TRead, undefined, undefined, undefined>;
 
 export function mapReader<
   TReadIn,

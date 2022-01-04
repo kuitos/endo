@@ -56,13 +56,31 @@ async () => {
 };
 
 async () => {
-  const s: Stream<string, number, boolean, boolean> =
+  const s: Stream<string> =
     prime(async function *generator() {
-    const n: number = yield 'A';
-    return false;
-  }());
+      yield 'A';
+      return undefined;
+    }());
+  s.return(undefined);
 };
 
+async () => {
+  const s: Stream<string, number> =
+    prime(async function *generator() {
+      const n: number = yield 'A';
+      return undefined;
+    }(), 1);
+  s.return(undefined);
+};
+
+async () => {
+  const s: Stream<string, number, bigint, bigint> =
+    prime(async function *generator() {
+      const n: number = yield 'A';
+      return 1n;
+    }(), 1);
+  s.return(2n);
+};
 async () => {
   const [reader, writer] = makePipe<number, string, boolean, Array<number>>();
   const a: IteratorResult<number, boolean> = await reader.next('A');
