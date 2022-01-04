@@ -48,7 +48,7 @@ export const makeNodeReader = input => {
     },
     [Symbol.asyncIterator]() {
       return reader;
-    }
+    },
   };
 
   /** @type {import('@endo/stream').Reader<Uint8Array>} */
