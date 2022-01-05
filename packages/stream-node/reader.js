@@ -40,7 +40,8 @@ export const makeNodeReader = input => {
       assert(iterator.return);
       return iterator.return();
     },
-    async throw() {
+    async throw(error) {
+      input.destroy(error);
       assert(iterator.return);
       return iterator.return();
     },
