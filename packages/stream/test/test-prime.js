@@ -38,9 +38,12 @@ test('prime empty throw in', async (/** @type {import('ava').ExecutionContext} *
   }
 
   const iterator = prime(empty());
-  const { done, value } = await iterator.throw(new Error('Abort'));
-  t.is(done, true);
-  t.is(value, 'Z');
+  try {
+    await iterator.throw(new Error('Abort'));
+    t.fail();
+  } catch (error) {
+    t.is(error.message, 'Abort');
+  }
 });
 
 test('prime single throw in', async (/** @type {import('ava').ExecutionContext} */ t) => {

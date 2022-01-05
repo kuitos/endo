@@ -191,7 +191,7 @@ export const prime = (generator, primer) => {
     async throw(error) {
       const result = await first;
       if (result.done) {
-        return result;
+        throw error;
       }
       return generator.throw(error);
     },
