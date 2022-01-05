@@ -36,20 +36,18 @@ export function pump<
 
 export function prime<
   TRead,
+>(
+  writer: AsyncGenerator<TRead, undefined, undefined>,
+  // primer is implicitly undefined for this overload.
+): Stream<TRead, undefined, undefined, undefined>;
+export function prime<
+  TRead,
   TWrite = unknown,
   TReturn = unknown,
 >(
   writer: AsyncGenerator<TRead,  TReturn, TWrite>,
   primer: TWrite,
 ): Stream<TRead, TWrite, TReturn, TReturn>;
-
-// Overload:
-export function prime<
-  TRead,
->(
-  writer: AsyncGenerator<TRead, undefined, undefined>,
-  // primer is implicitly undefined for this overload.
-): Stream<TRead, undefined, undefined, undefined>;
 
 export function mapReader<
   TReadIn,
