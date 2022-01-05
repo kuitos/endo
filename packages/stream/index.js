@@ -169,13 +169,12 @@ harden(pump);
  */
 export const prime = (generator, primer) => {
   // We capture the first returned promise.
-  let first = generator.next(primer);
+  const first = generator.next(primer);
   const primed = harden({
     /** @param {TWrite} value */
     async next(value) {
       const result = await first;
       if (result.done) {
-        first = generator.next(primer);
         return result;
       }
       return generator.next(value);
@@ -184,7 +183,6 @@ export const prime = (generator, primer) => {
     async return(value) {
       const result = await first;
       if (result.done) {
-        first = generator.next(primer);
         return result;
       }
       return generator.return(value);
@@ -193,7 +191,6 @@ export const prime = (generator, primer) => {
     async throw(error) {
       const result = await first;
       if (result.done) {
-        first = generator.next(primer);
         return result;
       }
       return generator.throw(error);
