@@ -81,6 +81,7 @@ async () => {
     }(), 1);
   s.return(2n);
 };
+
 async () => {
   const [reader, writer] = makePipe<number, string, boolean, Array<number>>();
   const a: IteratorResult<number, boolean> = await reader.next('A');
