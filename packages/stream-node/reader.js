@@ -37,12 +37,10 @@ export const makeNodeReader = input => {
       return iterator.next();
     },
     async return() {
-      input.destroy();
       assert(iterator.return);
       return iterator.return();
     },
-    async throw(error) {
-      input.destroy(error);
+    async throw() {
       assert(iterator.return);
       return iterator.return();
     },
@@ -53,6 +51,7 @@ export const makeNodeReader = input => {
 
   /** @type {import('@endo/stream').Reader<Uint8Array>} */
   return mapReader(reader, buffer => {
+    assert(typeof buffer !== 'string');
     return new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.length);
   });
 };
