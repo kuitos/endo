@@ -94,7 +94,7 @@ test('prime throw case', async (/** @type {import('ava').ExecutionContext} */ t)
   const iterator = prime(temperamental());
   try {
     await iterator.next();
-    t.pass();
+    t.fail();
   } catch (error) {
     t.is(error.message, 'Abort');
   }
