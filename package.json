@@ -6,7 +6,9 @@
     "packages/base64",
     "packages/captp",
     "packages/cjs-module-analyzer",
+    "packages/cli",
     "packages/compartment-mapper",
+    "packages/daemon",
     "packages/endo",
     "packages/eslint-config",
     "packages/eslint-plugin",
@@ -30,6 +32,7 @@
     "packages/syrup",
     "packages/test262-runner",
     "packages/test262-runner",
+    "packages/where",
     "packages/zip"
   ],
   "engines": {
